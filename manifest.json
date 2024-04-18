@@ -15,5 +15,6 @@
   ],
   "start_url": ".",
 "theme_color": "#000000",
-  "display": "standalone"
+  "display": "standalone",
+    "capture_links": "new-client"
 }
