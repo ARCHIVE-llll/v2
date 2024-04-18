@@ -3,6 +3,7 @@
 <!-- Written and created by Thomas John-Michael de Beer, feel free to contact me via tjdebeer@gmail.com  -->
 <html lang="en">
 <head>
+<link rel="manifest" href="manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>⧉</title>
@@ -17,17 +18,49 @@
             height: 100vh;
             margin: 0;
         }
-#cameraViewContainer {
-            width: 41vh;
-            height: 41vh;
-            position: absolute;
-            overflow: hidden;
-            background-color: transparent;
-            z-index: 9;
-            left: 50%;
-            transform: translateX(-50%); 
-            top: 32%; 
-        }
+
+  #install-app-button {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: 0.2;
+    animation: pulse 2.2s infinite alternate;
+    transition: opacity 2.2s ease;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.2;
+    }
+    66% {
+      opacity: 0.3;
+    }
+    100% {
+      opacity: 0.1;
+    }
+  }
+
+   #install-app-button:hover {
+  animation: pulse-hover 2.2s infinite alternate;
+}
+
+@keyframes pulse-hover {
+  0% {
+    opacity: 0.5;
+  }
+  66% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
 
 #cameraView {
             width: 100%;
@@ -248,6 +281,14 @@
 </head>
 
 <body>
+
+  <div id="install-app-container" style="display: none;">
+    <svg id="install-app-button" viewBox="0 0 201.5 236.85" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" width="111px" height="111px">
+      <defs>
+        <style>.cls-1{fill:#fff;}</style>
+      </defs>
+      <path class="cls-1" d="M194.91,543.55l95.93,84.77,95.43-84.27a15,15,0,0,0-19.86-22.49l-60.82,53.71V459.81a15,15,0,0,0-30,0v115l-60.82-53.74a15,15,0,0,0-19.86,22.48Z" transform="translate(-189.84 -444.81)"/><path class="cls-1" d="M376.34,603.16a15,15,0,0,0-15,15v25.5a8.11,8.11,0,0,1-8,8H227.84a8.11,8.11,0,0,1-8-8v-25.5a15,15,0,0,0-30,0v25.5a38,38,0,0,0,38,38h125.5a38,38,0,0,0,38-38v-25.5A15,15,0,0,0,376.34,603.16Z" transform="translate(-189.84 -444.81)"/></svg>
+  </div>
 
 <div id="BLACK_SCREEN"></div>
 
@@ -1349,7 +1390,18 @@ async function UpdateIndex(ARCHIVEentry) {
     }
 }
 
+  const installAppContainer = document.getElementById('install-app-container');
+  const installAppButton = document.getElementById('install-app-button');
 
+  window.addEventListener('beforeinstallprompt', (event) => {
+   event.preventDefault();
+   installAppContainer.style.display = 'block';
+
+   installAppButton.addEventListener('click', async () => {
+    await event.prompt();
+    installAppContainer.style.display = 'none';
+   });
+  });
 
 
 
