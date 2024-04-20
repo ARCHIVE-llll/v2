@@ -15,5 +15,6 @@
   ],
   "start_url": "https://archive-llll.github.io/v2/",
   "display": "standalone",
+    "scope": "/",
 "theme_color": "#000000"
 }
