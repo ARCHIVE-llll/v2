@@ -1123,9 +1123,9 @@ function ARCHIVE(processedImageArray, SAVED_LINK) {
 
 
 
-
-function FRAME(processedImageArray) {
     let isWindowOpen = false;
+function FRAME(processedImageArray) {
+
 
     return new Promise((resolve, reject) => {
         const request = indexedDB.open('myDatabase', 1);
