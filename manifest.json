@@ -1,5 +1,4 @@
 {
-    "manifest_version": 3, 
   "name": "ARCHIVE",  
   "short_name": "⧉",
   "icons": [
@@ -14,6 +13,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://archive-llll.github.io/v2/",
-  "display": "browser"
+  "start_url": ".",
+"theme_color": "#000000",
+  "display": "standalone",
 }
